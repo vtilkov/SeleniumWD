@@ -1,5 +1,7 @@
 package ru;
 
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,7 +13,7 @@ import java.time.Duration;
 
 public class PobedaAeroTest {
 
-    private WebDriver driver;
+    //private WebDriver driver;
 
     //сестрички странички
     //private GooglePage googlePage;
@@ -21,7 +23,7 @@ public class PobedaAeroTest {
 
     @BeforeEach
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "C:\\_openjdk\\demo\\SeleniumWD\\SeleniumWD\\chromedriver-win64\\chromedriver.exe");
+        /*System.setProperty("webdriver.chrome.driver", "C:\\_openjdk\\demo\\SeleniumWD\\SeleniumWD\\chromedriver-win64\\chromedriver.exe");
         driver = new ChromeDriver();
 
         //неявные ожидания
@@ -33,7 +35,12 @@ public class PobedaAeroTest {
         //googlePage = new GooglePage(driver);
         pobedaMainPage = new PobedaMainPage(driver);
         //pobedaEnglishPage = new PobedaEnglishPage(driver);
-        manageBookingPage = new ManageBookingPage(driver);
+        manageBookingPage = new ManageBookingPage(driver);*/
+        Configuration.timeout = 130000;
+        Configuration.pageLoadTimeout = 130000;
+
+        pobedaMainPage = new PobedaMainPage();
+        manageBookingPage = new ManageBookingPage();
     }
 
     /*//поиск сайта компании Победа
@@ -93,6 +100,7 @@ public class PobedaAeroTest {
 
     @AfterEach
     public void tearDown() {
-        if (driver !=null) {driver.quit();}
+        //if (driver !=null) {driver.quit();}
+        Selenide.closeWebDriver();
     }
 }
